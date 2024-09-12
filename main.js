@@ -8,10 +8,12 @@ async function getWeatherData(location) {
     }
   );
   const weatherData = await response.json();
-  console.log(weatherNow(weatherData));
-  console.log(weatherDaily(weatherData));
-  console.log(weatherHourly(weatherData));
+  // console.log(weatherNow(weatherData));
+  // console.log(weatherDaily(weatherData));
+  // console.log(weatherHourly(weatherData));
+  console.log(weatherData);
   displayNowForecast(weatherData);
+  displayHourlyForecast(weatherData);
 }
 
 //function to extract now data
@@ -53,7 +55,7 @@ function weatherHourly(data) {
   let hourlyData = {};
   for (let i in hours) {
     hourlyData[i] = {
-      datetime: hours[i].datetime,
+      datetimeEpoch: hours[i].datetimeEpoch,
       temp: hours[i].temp,
       conditions: hours[i].conditions,
     };
@@ -66,7 +68,6 @@ const submitLocation = (function () {
   let input = document.getElementById("location");
   let submitButton = document.getElementById("submit-location");
   submitButton.addEventListener("click", () => {
-    console.log(input.value);
     getWeatherData(input.value);
   });
 })();
@@ -87,4 +88,22 @@ function displayNowForecast(data) {
   descriptionNow.innerText = weatherObj.description;
   feelsLikeNow.innerText = weatherObj.feelslike;
   locationField.value = weatherObj.address;
+}
+
+function displayHourlyForecast(data) {
+  const weatherObj = weatherHourly(data);
+  const hourlyForecast = document.getElementById("hourly-forecast");
+
+  for (i in weatherObj) {
+    const node = document.createElement("div");
+    const temp = document.createElement("div");
+    const condition = document.createElement("div");
+    const time = document.createElement("div");
+
+    temp.innerText = weatherObj[i].temp;
+    condition.innerText = weatherObj[i].conditions;
+    // time.innerText = new Date(weatherObj[i].datetimeEpoch);
+    node.append(temp, condition, time);
+    hourlyForecast.append(node);
+  }
 }
