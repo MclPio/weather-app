@@ -14,6 +14,7 @@ async function getWeatherData(location) {
   console.log(weatherData);
   displayNowForecast(weatherData);
   displayHourlyForecast(weatherData);
+  displayDailyForecast(weatherData);
 }
 
 //function to extract now data
@@ -55,7 +56,7 @@ function weatherHourly(data) {
   let hourlyData = {};
   for (let i in hours) {
     hourlyData[i] = {
-      datetimeEpoch: hours[i].datetimeEpoch,
+      datetime: hours[i].datetime,
       temp: hours[i].temp,
       conditions: hours[i].conditions,
     };
@@ -82,11 +83,11 @@ function displayNowForecast(data) {
 
   const weatherObj = weatherNow(data);
 
-  tempNow.innerText = weatherObj.temp;
-  tempMaxNow.innerText = weatherObj.tempmax;
-  tempMinNow.innerText = weatherObj.tempmin;
+  tempNow.innerText = Math.round(weatherObj.temp);
+  tempMaxNow.innerText = Math.round(weatherObj.tempmax);
+  tempMinNow.innerText = Math.round(weatherObj.tempmin);
   descriptionNow.innerText = weatherObj.description;
-  feelsLikeNow.innerText = weatherObj.feelslike;
+  feelsLikeNow.innerText = Math.round(weatherObj.feelslike);
   locationField.value = weatherObj.address;
 }
 
@@ -100,10 +101,53 @@ function displayHourlyForecast(data) {
     const condition = document.createElement("div");
     const time = document.createElement("div");
 
-    temp.innerText = weatherObj[i].temp;
+    temp.innerText = Math.round(weatherObj[i].temp);
     condition.innerText = weatherObj[i].conditions;
-    // time.innerText = new Date(weatherObj[i].datetimeEpoch);
+    time.innerText = getFormattedHour(weatherObj[i].datetime);
     node.append(temp, condition, time);
     hourlyForecast.append(node);
   }
+}
+
+function displayDailyForecast(data) {
+  const days = weatherDaily(data);
+  let dailyForecast = document.getElementById("daily-forecast");
+
+  for (i in days) {
+    const node = document.createElement("div");
+    const datetime = document.createElement("div");
+    const conditions = document.createElement("div");
+    const tempmax = document.createElement("div");
+    const tempmin = document.createElement("div");
+
+    datetime.innerText = days[i].datetime;
+    conditions.innerText = days[i].conditions;
+    tempmax.innerText = Math.round(days[i].tempmax);
+    tempmin.innerText = Math.round(days[i].tempmin);
+    node.append(datetime, conditions, tempmax, tempmin);
+    dailyForecast.append(node);
+  }
+}
+
+function getFormattedHour(datetime) {
+  const res = Number(datetime.slice(0, 2)) + 1 + new Date().getHours();
+  let hour;
+  if (res > 24) {
+    hour = res - 24;
+  } else {
+    hour = res;
+  }
+  hour = String(hour);
+
+  if (hour.length < 2) {
+    hour = "0".concat(hour);
+  }
+
+  const formattedTime = new Date(`2000-01-01T${hour}:00:00`)
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      hour12: true,
+    })
+    .toLowerCase();
+  return formattedTime;
 }
