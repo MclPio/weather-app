@@ -11,14 +11,15 @@ async function getWeatherData(location) {
   console.log(weatherNow(weatherData));
   console.log(weatherDaily(weatherData));
   console.log(weatherHourly(weatherData));
+  displayNowForecast(weatherData);
 }
-getWeatherData("toronto");
 
 //function to extract now data
 // => (temp, high, low, description, feels like)
 // chance to use a background image to describe condition...
 function weatherNow(data) {
   return {
+    temp: data.days[0].temp,
     address: data.resolvedAddress,
     tempmax: data.days[0].tempmax,
     tempmin: data.days[0].tempmin,
@@ -58,4 +59,32 @@ function weatherHourly(data) {
     };
   }
   return hourlyData;
+}
+
+// function to submit location and get data back
+const submitLocation = (function () {
+  let input = document.getElementById("location");
+  let submitButton = document.getElementById("submit-location");
+  submitButton.addEventListener("click", () => {
+    console.log(input.value);
+    getWeatherData(input.value);
+  });
+})();
+
+function displayNowForecast(data) {
+  const tempNow = document.getElementById("temp-now");
+  const tempMaxNow = document.getElementById("tempmax-now");
+  const tempMinNow = document.getElementById("tempmin-now");
+  const descriptionNow = document.getElementById("description-now");
+  const feelsLikeNow = document.getElementById("feelslike-now");
+  const locationField = document.getElementById("location");
+
+  const weatherObj = weatherNow(data);
+
+  tempNow.innerText = weatherObj.temp;
+  tempMaxNow.innerText = weatherObj.tempmax;
+  tempMinNow.innerText = weatherObj.tempmin;
+  descriptionNow.innerText = weatherObj.description;
+  feelsLikeNow.innerText = weatherObj.feelslike;
+  locationField.value = weatherObj.address;
 }

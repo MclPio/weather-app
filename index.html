@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" placeholder="Toronto" />
+      <button type="button" id="submit-location">Submit</button>
+    </form>
+    <div id="now-forecast">
+      <div id="temp-now"></div>
+      <div id="tempmax-now"></div>
+      <div id="tempmin-now"></div>
+      <div id="description-now"></div>
+      <div id="feelslike-now"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
