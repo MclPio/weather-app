@@ -8,9 +8,7 @@ async function getWeatherData(location) {
     }
   );
   const weatherData = await response.json();
-  // console.log(weatherNow(weatherData));
-  // console.log(weatherDaily(weatherData));
-  // console.log(weatherHourly(weatherData));
+
   console.log(weatherData);
   displayNowForecast(weatherData);
   displayHourlyForecast(weatherData);
@@ -100,6 +98,10 @@ function displayHourlyForecast(data) {
     const temp = document.createElement("div");
     const condition = document.createElement("div");
     const time = document.createElement("div");
+    node.classList = "hourly-item";
+    temp.classList = "temp-hour";
+    condition.classList = "description-hour";
+    time.classList = "time-hour";
 
     temp.innerText = Math.round(weatherObj[i].temp);
     condition.innerText = weatherObj[i].conditions;
@@ -119,6 +121,12 @@ function displayDailyForecast(data) {
     const conditions = document.createElement("div");
     const tempmax = document.createElement("div");
     const tempmin = document.createElement("div");
+
+    node.classList = "daily-item";
+    datetime.classList = "date";
+    conditions.classList = "description";
+    tempmax.classList = "temp-max";
+    tempmin.classList = "temp-min";
 
     datetime.innerText = days[i].datetime;
     conditions.innerText = days[i].conditions;

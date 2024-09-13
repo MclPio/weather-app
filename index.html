@@ -7,20 +7,32 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form>
-      <label for="location">Location</label>
-      <input type="text" name="location" id="location" placeholder="Toronto" />
-      <button type="button" id="submit-location">Submit</button>
-    </form>
-    <div id="now-forecast">
-      <div id="temp-now"></div>
-      <div id="tempmax-now"></div>
-      <div id="tempmin-now"></div>
-      <div id="description-now"></div>
-      <div id="feelslike-now"></div>
+    <div class="container">
+      <div class="eva-header">
+        NERV Weather System<span class="cursor">_</span>
+      </div>
+
+      <form id="city-search-form">
+        <label for="location">Location</label>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          placeholder="Toronto"
+        />
+        <button type="button" id="submit-location">Submit</button>
+      </form>
+      <div id="now-forecast">
+        <div id="temp-now"></div>
+        <div id="tempmax-now"></div>
+        <div id="tempmin-now"></div>
+        <div id="description-now"></div>
+        <div id="feelslike-now"></div>
+      </div>
+      <div id="hourly-forecast"></div>
+      <div id="daily-forecast"></div>
     </div>
-    <div id="hourly-forecast"></div>
-    <div id="daily-forecast"></div>
+    <div class="scanline"></div>
     <script src="main.js"></script>
   </body>
 </html>

@@ -1,0 +1,216 @@
+/* Evangelion-themed Weather App CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: #000;
+  color: #00ff00;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid #00ff00;
+  padding: 20px;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+/* Form styles */
+#city-search-form {
+  margin-bottom: 20px;
+  border: 1px solid #00ff00;
+  padding: 10px;
+}
+
+#city-search-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#city-search-form input {
+  width: 100%;
+  padding: 5px;
+  background-color: #000;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+
+#submit-location {
+  background-color: #00ff00;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+
+#submit-location:hover {
+  background-color: #000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+}
+
+/* Current weather styles */
+#now-forecast {
+  border: 1px solid #00ff00;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+#temp-now {
+  font-size: 48px;
+  grid-column: 1 / -1;
+}
+
+#temp-now::after {
+  content: "°C";
+  font-size: 24px;
+  vertical-align: super;
+}
+
+#tempmax-now::before {
+  content: "MAX: ";
+  color: #ff0000;
+}
+
+#tempmin-now::before {
+  content: "MIN: ";
+  color: #0000ff;
+}
+
+#description-now {
+  grid-column: 1 / -1;
+}
+
+#feelslike-now::before {
+  content: "FEELS LIKE: ";
+}
+
+/* Hourly forecast styles */
+#hourly-forecast {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+  border: 1px solid #00ff00;
+  margin-bottom: 20px;
+}
+
+.hourly-item {
+  flex: 0 0 auto;
+  width: 100px;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #00ff00;
+}
+
+.hourly-item:last-child {
+  border-right: none;
+}
+
+.temp-hour::after {
+  content: "°C";
+  font-size: 12px;
+  vertical-align: super;
+}
+
+/* Daily forecast styles */
+#daily-forecast {
+  border: 1px solid #00ff00;
+}
+
+#daily-forecast>div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  border-bottom: 1px solid #00ff00;
+}
+
+#daily-forecast>div:last-child {
+  border-bottom: none;
+}
+
+#daily-forecast>div>div:nth-child(3)::after,
+#daily-forecast>div>div:nth-child(4)::after {
+  content: "°C";
+  font-size: 12px;
+  vertical-align: super;
+}
+
+#daily-forecast>div>div:nth-child(3) {
+  color: #ff0000;
+}
+
+#daily-forecast>div>div:nth-child(4) {
+  color: #0000ff;
+}
+
+/* Evangelion-style header */
+.eva-header {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 2px solid #00ff00;
+  padding: 10px;
+  background-color: #000;
+  color: #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+/* Scanline effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 0, 0.2), transparent);
+  pointer-events: none;
+  animation: scanline 10s linear infinite;
+  z-index: 9999;
+}
+
+/* Blinking cursor effect */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
