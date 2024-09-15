@@ -1,3 +1,5 @@
+import "./css/style.css";
+
 const key = "WH4FQVH3ELQFFL6WF958XB45T";
 
 async function getWeatherData(location) {
@@ -95,7 +97,7 @@ function displayHourlyForecast(data) {
   const weatherObj = weatherHourly(data);
   const hourlyForecast = document.getElementById("hourly-forecast");
 
-  for (i in weatherObj) {
+  for (let i in weatherObj) {
     const node = document.createElement("div");
     const temp = document.createElement("div");
     const condition = document.createElement("div");
@@ -113,7 +115,7 @@ function displayDailyForecast(data) {
   const days = weatherDaily(data);
   let dailyForecast = document.getElementById("daily-forecast");
 
-  for (i in days) {
+  for (let i in days) {
     const node = document.createElement("div");
     const datetime = document.createElement("div");
     const conditions = document.createElement("div");
