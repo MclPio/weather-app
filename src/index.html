@@ -6,20 +6,41 @@
     <title>Weather</title>
   </head>
   <body>
-    <div id="content"></div>
-    <form>
-      <label for="location">Location</label>
-      <input type="text" name="location" id="location" placeholder="Toronto" />
-      <button type="button" id="submit-location">Submit</button>
-    </form>
-    <div id="now-forecast">
-      <div id="temp-now"></div>
-      <div id="tempmax-now"></div>
-      <div id="tempmin-now"></div>
-      <div id="description-now"></div>
-      <div id="feelslike-now"></div>
-    </div>
-    <div id="hourly-forecast"></div>
-    <div id="daily-forecast"></div>
+    <section class="section">
+      <form class="container">
+        <div class="field">
+          <label for="location" class="label">Location</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              name="location"
+              id="location"
+              placeholder="Toronto"
+            />
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" type="button" id="submit-location">
+            Submit
+          </button>
+        </div>
+      </form>
+    </section>
+    <section class="section">
+      <div id="now-forecast" class="container">
+        <div id="temp-now"></div>
+        <div id="tempmax-now"></div>
+        <div id="tempmin-now"></div>
+        <div id="description-now"></div>
+        <div id="feelslike-now"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div id="hourly-forecast" class="container"></div>
+    </section>
+    <section class="section">
+      <div id="daily-forecast" class="container"></div>
+    </section>
   </body>
 </html>

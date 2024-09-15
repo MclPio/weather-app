@@ -1,18 +1,20 @@
 import "./css/style.css";
+import weatherData from "../sample.json";
 
 const key = "WH4FQVH3ELQFFL6WF958XB45T";
 
 async function getWeatherData(location) {
-  const response = await fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
-    {
-      mode: "cors",
-    }
-  );
-  const weatherData = await response.json();
+  // const response = await fetch(
+  //   `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
+  //   {
+  //     mode: "cors",
+  //   }
+  // );
+  // const weatherData = await response.json();
   // console.log(weatherNow(weatherData));
   // console.log(weatherDaily(weatherData));
   // console.log(weatherHourly(weatherData));
+
   console.log(weatherData);
   displayNowForecast(weatherData);
   displayHourlyForecast(weatherData);
