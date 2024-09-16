@@ -1,5 +1,6 @@
 import "./css/style.css";
 import weatherData from "../sample.json";
+import "material-symbols/outlined.css";
 
 const key = "WH4FQVH3ELQFFL6WF958XB45T";
 
@@ -11,16 +12,24 @@ async function getWeatherData(location) {
   //   }
   // );
   // const weatherData = await response.json();
-  // console.log(weatherNow(weatherData));
-  // console.log(weatherDaily(weatherData));
-  // console.log(weatherHourly(weatherData));
-
-  console.log(weatherData);
-  displayNowForecast(weatherData);
-  displayHourlyForecast(weatherData);
-  displayDailyForecast(weatherData);
+  // need to handle erros or else loading bar stays on
+  setTimeout(() => {
+    console.log(weatherData);
+    displayNowForecast(weatherData);
+    displayHourlyForecast(weatherData);
+    displayDailyForecast(weatherData);
+    updateSearchLoading();
+  }, 500);
 }
 
+function updateSearchLoading() {
+  const input = document.getElementById("location");
+  if (input.parentElement.classList.contains("is-loading")) {
+    input.parentElement.classList = "control has-icons-left";
+  } else {
+    input.parentElement.classList = "control has-icons-left is-loading";
+  }
+}
 //function to extract now data
 // => (temp, high, low, description, feels like)
 // chance to use a background image to describe condition...
@@ -73,7 +82,14 @@ const submitLocation = (function () {
   let input = document.getElementById("location");
   let submitButton = document.getElementById("submit-location");
   submitButton.addEventListener("click", () => {
+    updateSearchLoading();
     getWeatherData(input.value);
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      updateSearchLoading();
+      getWeatherData(input.value);
+    }
   });
 })();
 
