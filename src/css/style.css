@@ -1,1 +1,23 @@
-@import 'bulma/css/bulma.css'
+@import 'bulma/css/bulma.css';
+
+
+.temp::after{
+  content: '°';
+}
+
+.hidden {
+  display: none;
+}
+
+
+#tempmax-now::before {
+  content: 'High:\00a0 ';
+}
+
+#tempmin-now::before {
+  content: 'Low: \00a0 ';
+}
+
+#feelslike-now::before {
+  content: 'Feels Like \00a0'
+}

@@ -1,25 +1,23 @@
 import "./css/style.css";
-import weatherData from "../sample.json";
+// import weatherData from "../sample.json";
 import "material-symbols/outlined.css";
 
 const key = "WH4FQVH3ELQFFL6WF958XB45T";
 
 async function getWeatherData(location) {
-  // const response = await fetch(
-  //   `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
-  //   {
-  //     mode: "cors",
-  //   }
-  // );
-  // const weatherData = await response.json();
+  const response = await fetch(
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
+    {
+      mode: "cors",
+    }
+  );
+  const weatherData = await response.json();
   // need to handle erros or else loading bar stays on
-  setTimeout(() => {
-    console.log(weatherData);
-    displayNowForecast(weatherData);
-    displayHourlyForecast(weatherData);
-    displayDailyForecast(weatherData);
-    updateSearchLoading();
-  }, 500);
+  console.log(weatherData);
+  displayNowForecast(weatherData);
+  displayHourlyForecast(weatherData);
+  displayDailyForecast(weatherData);
+  updateSearchLoading();
 }
 
 function updateSearchLoading() {
@@ -97,7 +95,7 @@ function displayNowForecast(data) {
   const tempNow = document.getElementById("temp-now");
   const tempMaxNow = document.getElementById("tempmax-now");
   const tempMinNow = document.getElementById("tempmin-now");
-  const descriptionNow = document.getElementById("description-now");
+  const conditionsNow = document.getElementById("conditions-now");
   const feelsLikeNow = document.getElementById("feelslike-now");
   const locationField = document.getElementById("location");
 
@@ -106,9 +104,18 @@ function displayNowForecast(data) {
   tempNow.innerText = Math.round(weatherObj.temp);
   tempMaxNow.innerText = Math.round(weatherObj.tempmax);
   tempMinNow.innerText = Math.round(weatherObj.tempmin);
-  descriptionNow.innerText = weatherObj.description;
+  conditionsNow.innerText = weatherObj.conditions;
   feelsLikeNow.innerText = Math.round(weatherObj.feelslike);
   locationField.value = weatherObj.address;
+  removeHidden();
+}
+
+function removeHidden() {
+  const hiddenDivs = document.querySelectorAll(".hidden");
+  for (let i = 0; i < hiddenDivs.length; i++) {
+    console.log(hiddenDivs[i]);
+    hiddenDivs[i].classList.remove("hidden");
+  }
 }
 
 function displayHourlyForecast(data) {

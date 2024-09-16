@@ -31,11 +31,23 @@
     </section>
     <section class="section">
       <div id="now-forecast" class="container">
-        <div id="temp-now"></div>
-        <div id="tempmax-now"></div>
-        <div id="tempmin-now"></div>
-        <div id="description-now"></div>
-        <div id="feelslike-now"></div>
+        <div class="columns is-vcentered is-mobile">
+          <div class="column">
+            <div class="hidden">Now</div>
+            <div id="temp-now" class="hidden is-size-1 temp"></div>
+            <div class="is-flex is-flex-direction-row is-align-items-center">
+              <div id="tempmax-now" class="hidden temp mr-2"></div>
+              <div id="temp-divider" class="hidden mr-2">•</div>
+              <div id="tempmin-now" class="hidden temp mr-2"></div>
+            </div>
+          </div>
+          <div
+            class="column is-flex is-flex-direction-column is-align-items-flex-end"
+          >
+            <div id="conditions-now"></div>
+            <div id="feelslike-now" class="temp hidden"></div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">
