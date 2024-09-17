@@ -27,4 +27,12 @@ function getFormattedHour(datetime) {
   return formattedTime;
 }
 
-export { iconURL, getFormattedHour };
+function celsiusToFahrenheit(tempCelsius) {
+  return Math.round((tempCelsius * 9) / 5 + 32);
+}
+
+function fahrenheitToCelsius(tempFahrenheit) {
+  return Math.round((tempFahrenheit - 32) * (5 / 9));
+}
+
+export { iconURL, getFormattedHour, celsiusToFahrenheit, fahrenheitToCelsius };
