@@ -29,3 +29,7 @@
       }
   }
 }
+
+#hourly-forecast > .columns {
+  overflow-x: auto !important;
+}

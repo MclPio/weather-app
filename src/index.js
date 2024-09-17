@@ -121,19 +121,21 @@ function removeHidden() {
 function displayHourlyForecast(data) {
   const weatherObj = weatherHourly(data);
   const hourlyForecast = document.getElementById("hourly-forecast"); // find bulma css for the hourly forecast scroll
-
+  const columns = document.getElementById("hourly-forecast-columns");
+  columns.innerHTML = "";
   for (let i in weatherObj) {
     const icon = weatherObj[i].icon;
     const iconContainer = document.createElement("span");
-    iconContainer.classList = "icon is-small";
+    iconContainer.classList = "icon is-medium";
 
     const node = document.createElement("div");
     node.classList =
-      "hour-node is-flex is-flex-direction-column is-justify-content-center"; // find bulma css for the hour nodes
+      "hour-node column is-one-fifth is-flex is-flex-direction-column is-align-items-center"; // column classes
     const temp = document.createElement("div");
-    temp.classList = "temp mb-1";
+    temp.classList = "temp mb-4";
     const time = document.createElement("div");
     const img = document.createElement("img");
+    img.classList = "mb-2";
 
     temp.innerText = Math.round(weatherObj[i].temp);
     time.innerText = getFormattedHour(weatherObj[i].datetime);
@@ -141,7 +143,8 @@ function displayHourlyForecast(data) {
     img.alt = icon;
     iconContainer.append(img);
     node.append(temp, iconContainer, time);
-    hourlyForecast.append(node);
+    columns.append(node);
+    hourlyForecast.append(columns);
   }
 }
 
@@ -179,12 +182,13 @@ function getFormattedHour(datetime) {
     hour = "0".concat(hour);
   }
 
-  const formattedTime = new Date(`2000-01-01T${hour}:00:00`)
-    .toLocaleTimeString("en-US", {
+  const formattedTime = new Date(`2000-01-01T${hour}:00:00`).toLocaleTimeString(
+    "en-US",
+    {
       hour: "numeric",
       hour12: true,
-    })
-    .toLowerCase();
+    }
+  );
   return formattedTime;
 }
 
