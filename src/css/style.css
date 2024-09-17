@@ -33,3 +33,7 @@
 #hourly-forecast > .columns {
   overflow-x: auto !important;
 }
+
+.temp-min::before {
+  content: '/';
+}

@@ -56,6 +56,7 @@ function weatherDaily(data) {
       conditions: days[i].conditions,
       tempmax: days[i].tempmax,
       tempmin: days[i].tempmin,
+      icon: days[i].icon,
     };
   }
   return dailyData;
@@ -155,19 +156,33 @@ function displayHourlyForecast(data) {
 function displayDailyForecast(data) {
   const days = weatherDaily(data);
   let dailyForecast = document.getElementById("daily-forecast");
-
+  dailyForecast.innerHTML = "";
   for (let i in days) {
     const node = document.createElement("div");
+    node.classList = "daily-forecast-item level";
     const datetime = document.createElement("div");
     const conditions = document.createElement("div");
     const tempmax = document.createElement("div");
     const tempmin = document.createElement("div");
+    const icon = days[i].icon;
+    const iconContainer = document.createElement("span");
+    const tempContainer = document.createElement("div");
+    tempContainer.classList =
+      "is-flex is-flex-direction-row is-align-items-center";
+    iconContainer.classList = "icon";
+    const img = document.createElement("img");
+    img.src = iconURL(icon);
+    img.alt = icon;
+    iconContainer.append(img);
 
+    tempmax.classList = "temp";
+    tempmin.classList = "temp temp-min";
+    tempContainer.append(tempmax, tempmin);
     datetime.innerText = days[i].datetime;
     conditions.innerText = days[i].conditions;
     tempmax.innerText = Math.round(days[i].tempmax);
     tempmin.innerText = Math.round(days[i].tempmin);
-    node.append(datetime, conditions, tempmax, tempmin);
+    node.append(datetime, iconContainer, tempContainer);
     dailyForecast.append(node);
   }
 }
