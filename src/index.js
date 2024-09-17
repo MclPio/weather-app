@@ -1,17 +1,17 @@
 import "./css/style.css";
-// import weatherData from "../sample.json";
+import weatherData from "../sample.json";
 import "material-symbols/outlined.css";
 
 const key = "WH4FQVH3ELQFFL6WF958XB45T";
 
 async function getWeatherData(location) {
-  const response = await fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
-    {
-      mode: "cors",
-    }
-  );
-  const weatherData = await response.json();
+  // const response = await fetch(
+  //   `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${key}`,
+  //   {
+  //     mode: "cors",
+  //   }
+  // );
+  // const weatherData = await response.json();
   // need to handle erros or else loading bar stays on
   console.log(weatherData);
   displayNowForecast(weatherData);
@@ -70,6 +70,7 @@ function weatherHourly(data) {
       datetime: hours[i].datetime,
       temp: hours[i].temp,
       conditions: hours[i].conditions,
+      icon: hours[i].icon,
     };
   }
   return hourlyData;
@@ -113,25 +114,33 @@ function displayNowForecast(data) {
 function removeHidden() {
   const hiddenDivs = document.querySelectorAll(".hidden");
   for (let i = 0; i < hiddenDivs.length; i++) {
-    console.log(hiddenDivs[i]);
     hiddenDivs[i].classList.remove("hidden");
   }
 }
 
 function displayHourlyForecast(data) {
   const weatherObj = weatherHourly(data);
-  const hourlyForecast = document.getElementById("hourly-forecast");
+  const hourlyForecast = document.getElementById("hourly-forecast"); // find bulma css for the hourly forecast scroll
 
   for (let i in weatherObj) {
+    const icon = weatherObj[i].icon;
+    const iconContainer = document.createElement("span");
+    iconContainer.classList = "icon is-small";
+
     const node = document.createElement("div");
+    node.classList =
+      "hour-node is-flex is-flex-direction-column is-justify-content-center"; // find bulma css for the hour nodes
     const temp = document.createElement("div");
-    const condition = document.createElement("div");
+    temp.classList = "temp mb-1";
     const time = document.createElement("div");
+    const img = document.createElement("img");
 
     temp.innerText = Math.round(weatherObj[i].temp);
-    condition.innerText = weatherObj[i].conditions;
     time.innerText = getFormattedHour(weatherObj[i].datetime);
-    node.append(temp, condition, time);
+    img.src = iconURL(icon);
+    img.alt = icon;
+    iconContainer.append(img);
+    node.append(temp, iconContainer, time);
     hourlyForecast.append(node);
   }
 }
@@ -177,4 +186,9 @@ function getFormattedHour(datetime) {
     })
     .toLowerCase();
   return formattedTime;
+}
+
+function iconURL(icon) {
+  const url = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/4th%20Set%20-%20Color/${icon}.svg`;
+  return url;
 }

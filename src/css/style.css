@@ -21,3 +21,11 @@
 #feelslike-now::before {
   content: 'Feels Like \00a0'
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    img {
+        filter: invert(1);
+      }
+  }
+}
