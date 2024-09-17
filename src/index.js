@@ -40,6 +40,7 @@ function weatherNow(data) {
     description: data.days[0].description,
     feelslike: data.days[0].feelslike,
     conditions: data.days[0].conditions,
+    icon: data.days[0].icon,
   };
 }
 
@@ -99,6 +100,7 @@ function displayNowForecast(data) {
   const conditionsNow = document.getElementById("conditions-now");
   const feelsLikeNow = document.getElementById("feelslike-now");
   const locationField = document.getElementById("location");
+  const tempNowIcon = document.getElementById("temp-now-icon");
 
   const weatherObj = weatherNow(data);
 
@@ -108,6 +110,8 @@ function displayNowForecast(data) {
   conditionsNow.innerText = weatherObj.conditions;
   feelsLikeNow.innerText = Math.round(weatherObj.feelslike);
   locationField.value = weatherObj.address;
+  tempNowIcon.src = iconURL(weatherObj.icon);
+  tempNowIcon.alt = weatherObj.icon;
   removeHidden();
 }
 
@@ -126,7 +130,7 @@ function displayHourlyForecast(data) {
   for (let i in weatherObj) {
     const icon = weatherObj[i].icon;
     const iconContainer = document.createElement("span");
-    iconContainer.classList = "icon is-medium";
+    iconContainer.classList = "icon";
 
     const node = document.createElement("div");
     node.classList =
@@ -193,6 +197,6 @@ function getFormattedHour(datetime) {
 }
 
 function iconURL(icon) {
-  const url = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/4th%20Set%20-%20Color/${icon}.svg`;
+  const url = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/4th%20Set%20-%20Monochrome/${icon}.svg`;
   return url;
 }
