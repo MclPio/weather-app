@@ -159,8 +159,9 @@ function displayDailyForecast(data) {
   dailyForecast.innerHTML = "";
   for (let i in days) {
     const node = document.createElement("div");
-    node.classList = "daily-forecast-item level";
+    node.classList = "daily-forecast-item level is-mobile box";
     const datetime = document.createElement("div");
+    datetime.classList = "level-item";
     const conditions = document.createElement("div");
     const tempmax = document.createElement("div");
     const tempmin = document.createElement("div");
@@ -168,11 +169,12 @@ function displayDailyForecast(data) {
     const iconContainer = document.createElement("span");
     const tempContainer = document.createElement("div");
     tempContainer.classList =
-      "is-flex is-flex-direction-row is-align-items-center";
-    iconContainer.classList = "icon";
+      "is-flex is-flex-direction-row is-align-items-center level-item";
+    iconContainer.classList = "level-item";
     const img = document.createElement("img");
     img.src = iconURL(icon);
     img.alt = icon;
+    img.classList = "icon";
     iconContainer.append(img);
 
     tempmax.classList = "temp";
