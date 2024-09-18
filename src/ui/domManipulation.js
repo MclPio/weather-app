@@ -113,7 +113,7 @@ function updateSearchLoading() {
 function toggleTempUnit() {
   let tempList = document.querySelectorAll(".temp");
   for (let i = 0; i < tempList.length; i++) {
-    console.log(tempList[i].textContent);
+    ("tempList[i].textContent = tempList[i].textContent");
   }
 }
 

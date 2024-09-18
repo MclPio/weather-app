@@ -4,12 +4,4 @@ function initLocalStorage() {
   }
 }
 
-function setLocalStorageFahrenheit() {
-  localStorage.setItem("temperature", "fahrenheit");
-}
-
-function setLocalStorageCelcius() {
-  localStorage.setItem("temperature", "celsius");
-}
-
 export { initLocalStorage };
