@@ -47,4 +47,11 @@ function fahrenheitButton() {
   });
 }
 
-export { submitLocation, celsiusButton, fahrenheitButton };
+function recallLocation() {
+  if (localStorage.getItem("location")) {
+    updateSearchLoading();
+    getWeatherData(localStorage.getItem("location"));
+    setInitTemps();
+  }
+}
+export { submitLocation, celsiusButton, fahrenheitButton, recallLocation };

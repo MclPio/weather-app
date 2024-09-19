@@ -4,6 +4,7 @@ import {
   submitLocation,
   celsiusButton,
   fahrenheitButton,
+  recallLocation,
 } from "./ui/eventHandlers";
 import { initLocalStorage } from "./utils/localStorage";
 import { highlightTempSelection } from "./ui/domManipulation";
@@ -12,3 +13,4 @@ initLocalStorage();
 highlightTempSelection();
 celsiusButton();
 fahrenheitButton();
+recallLocation();

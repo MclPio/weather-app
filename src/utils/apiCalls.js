@@ -19,6 +19,7 @@ async function getWeatherData(location) {
   displayNowForecast(weatherData);
   displayHourlyForecast(weatherData);
   displayDailyForecast(weatherData);
+  localStorage.setItem("location", weatherData.resolvedAddress);
   updateSearchLoading();
 }
 
