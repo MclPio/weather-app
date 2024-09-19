@@ -1,5 +1,5 @@
 // import weatherData from "../../sample.json";
-import { updateSearchLoading } from "../ui/domManipulation";
+import { setInitTemps, updateSearchLoading } from "../ui/domManipulation";
 import {
   displayNowForecast,
   displayHourlyForecast,
@@ -32,6 +32,7 @@ async function getWeatherData(location) {
     displayHourlyForecast(weatherData);
     displayDailyForecast(weatherData);
     localStorage.setItem("location", weatherData.resolvedAddress);
+    setInitTemps();
   } catch (error) {
     console.error("Error fetching weather data:", error.message);
     alert(error.message);

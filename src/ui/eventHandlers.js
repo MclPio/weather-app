@@ -3,7 +3,6 @@ import {
   updateSearchLoading,
   changeTempsToFahrenheit,
   highlightTempSelection,
-  setInitTemps,
 } from "./domManipulation";
 import { getWeatherData } from "../utils/apiCalls";
 import { tempCelsius } from "../utils/localStorage";
@@ -14,13 +13,11 @@ const submitLocation = function () {
   submitButton.addEventListener("click", () => {
     updateSearchLoading();
     getWeatherData(input.value);
-    setInitTemps();
   });
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       updateSearchLoading();
       getWeatherData(input.value);
-      setInitTemps();
     }
   });
 };
@@ -51,7 +48,6 @@ function recallLocation() {
   if (localStorage.getItem("location")) {
     updateSearchLoading();
     getWeatherData(localStorage.getItem("location"));
-    setInitTemps();
   }
 }
 export { submitLocation, celsiusButton, fahrenheitButton, recallLocation };

@@ -146,7 +146,6 @@ function changeTempsToFahrenheit() {
 
 function setInitTemps() {
   if (!tempCelsius()) {
-    console.log("HELLO?");
     changeTempsToFahrenheit();
   }
 }
