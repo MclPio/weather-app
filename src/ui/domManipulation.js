@@ -4,7 +4,14 @@ import {
   weatherDaily,
 } from "../logic/dataProcessing";
 
-import { getFormattedHour, iconURL } from "../helpers";
+import {
+  celsiusToFahrenheit,
+  fahrenheitToCelsius,
+  getFormattedHour,
+  iconURL,
+} from "../helpers";
+
+import { tempCelsius } from "../utils/localStorage";
 
 function removeHidden() {
   const hiddenDivs = document.querySelectorAll(".hidden");
@@ -110,10 +117,36 @@ function updateSearchLoading() {
   }
 }
 
-function toggleTempUnit() {
-  let tempList = document.querySelectorAll(".temp");
-  for (let i = 0; i < tempList.length; i++) {
-    ("tempList[i].textContent = tempList[i].textContent");
+function highlightTempSelection() {
+  const celsiusButton = document.getElementById("celsius-unit");
+  const fahrenheitButton = document.getElementById("fahrenheit-unit");
+  celsiusButton.classList.remove("is-primary");
+  fahrenheitButton.classList.remove("is-primary");
+  if (tempCelsius()) {
+    celsiusButton.classList.add("is-primary");
+  } else {
+    fahrenheitButton.classList.add("is-primary");
+  }
+}
+
+function changeTempsToCelsius() {
+  let temperatures = document.querySelectorAll(".temp");
+  for (let i = 0; i < temperatures.length; i++) {
+    temperatures[i].innerText = fahrenheitToCelsius(temperatures[i].innerText);
+  }
+}
+
+function changeTempsToFahrenheit() {
+  let temperatures = document.querySelectorAll(".temp");
+  for (let i = 0; i < temperatures.length; i++) {
+    temperatures[i].innerText = celsiusToFahrenheit(temperatures[i].innerText);
+  }
+}
+
+function setInitTemps() {
+  if (!tempCelsius()) {
+    console.log("HELLO?");
+    changeTempsToFahrenheit();
   }
 }
 
@@ -123,5 +156,8 @@ export {
   displayHourlyForecast,
   displayDailyForecast,
   updateSearchLoading,
-  toggleTempUnit,
+  highlightTempSelection,
+  changeTempsToCelsius,
+  changeTempsToFahrenheit,
+  setInitTemps,
 };

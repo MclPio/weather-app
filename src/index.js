@@ -1,14 +1,14 @@
 import "./css/style.css";
 import "material-symbols/outlined.css";
-import { submitLocation } from "./ui/eventHandlers";
+import {
+  submitLocation,
+  celsiusButton,
+  fahrenheitButton,
+} from "./ui/eventHandlers";
 import { initLocalStorage } from "./utils/localStorage";
-initLocalStorage();
+import { highlightTempSelection } from "./ui/domManipulation";
 
-let button = document.getElementById("toggle-temp");
-button.addEventListener("click", () => {
-  if (localStorage.getItem("temperature") === "celsius") {
-    localStorage.setItem("temperature", "fahrenheit");
-  } else {
-    localStorage.setItem("temperature", "celsius");
-  }
-});
+initLocalStorage();
+highlightTempSelection();
+celsiusButton();
+fahrenheitButton();

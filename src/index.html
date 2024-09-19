@@ -8,36 +8,29 @@
   <body>
     <section class="section">
       <div class="container">
-        <div class="field">
-          <div class="control has-icons-left">
-            <input
-              class="input"
-              type="text"
-              name="location"
-              id="location"
-              placeholder="Toronto"
-            />
-            <span class="icon is-left is-small">
-              <span class="material-symbols-outlined">location_on</span>
-            </span>
+        <div class="is-flex is-justify-content-center">
+          <div class="field">
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Toronto"
+              />
+              <span class="icon is-left is-small">
+                <span class="material-symbols-outlined">location_on</span>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="control">
-          <button class="button is-primary" type="button" id="submit-location">
-            Submit
-          </button>
+          <div class="control">
+            <button class="button is-primary" type="button" id="submit-location">
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </section>
-    <div class="container">
-      <div class="buttons">
-        <button class="button is-info hidden" type="button" id="toggle-temp">
-          Fahrenheit
-        </button>
-        <button class="button is-success hidden" type="button" id="toggle-temp">
-          Celsius
-        </button>
-      </div>
     </div>
     <section class="section">
       <div id="now-forecast" class="container">
@@ -82,5 +75,13 @@
         <div id="daily-forecast" class="container"></div>
       </div>
     </section>
+    <footer class="footer hidden">
+      <div class="is-flex is-justify-content-center">
+        <div class="buttons has-addons">
+          <button class="button" id="celsius-unit">C°</button>
+          <button class="button" id="fahrenheit-unit">F°</button>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
