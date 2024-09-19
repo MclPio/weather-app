@@ -28,7 +28,7 @@ function displayNowForecast(data) {
   const feelsLikeNow = document.getElementById("feelslike-now");
   const locationField = document.getElementById("location");
   const tempNowIcon = document.getElementById("temp-now-icon");
-
+  const background = document.getElementById("background-image");
   const weatherObj = weatherNow(data);
 
   tempNow.innerText = Math.round(weatherObj.temp);
@@ -39,6 +39,7 @@ function displayNowForecast(data) {
   locationField.value = weatherObj.address;
   tempNowIcon.src = iconURL(weatherObj.icon);
   tempNowIcon.alt = weatherObj.icon;
+  background.classList.add(weatherObj.icon);
   removeHidden();
 }
 

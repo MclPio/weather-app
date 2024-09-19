@@ -37,3 +37,50 @@
 .temp-min::before {
   content: '/';
 }
+
+.clear-day {
+  background: linear-gradient(130deg, #87CEEB, #E0F6FF);
+}
+
+.clear-night {
+  background: linear-gradient(130deg, #191970, #483D8B);
+}
+
+.partly-cloudy-day {
+  background: linear-gradient(130deg, #87CEEB, #E0F6FF, #FFFFFF);
+}
+
+.partly-cloudy-night {
+  background: linear-gradient(130deg, #191970, #483D8B, #A9A9A9);
+}
+
+.cloudy {
+  background: linear-gradient(130deg, #708090, #C0C0C0);
+}
+
+.rain {
+  background: linear-gradient(130deg, #4682B4, #B0C4DE);
+}
+
+.snow {
+  background: linear-gradient(130deg, #F0F8FF, #E6E6FA);
+}
+
+.wind {
+  background: linear-gradient(130deg, #A9A9A9, #D3D3D3);
+}
+
+.fog {
+  background: linear-gradient(130deg, #D3D3D3, #DCDCDC);
+}
+
+#background-image {
+  animation: Animation 5s ease infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes Animation {
+  0%{background-position:10% 0%}
+  50%{background-position:91% 100%}
+  100%{background-position:10% 0%}
+}

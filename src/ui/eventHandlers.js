@@ -8,7 +8,7 @@ import {
 import { getWeatherData } from "../utils/apiCalls";
 import { tempCelsius } from "../utils/localStorage";
 // function to submit location and get data back
-const submitLocation = (function () {
+const submitLocation = function () {
   let input = document.getElementById("location");
   let submitButton = document.getElementById("submit-location");
   submitButton.addEventListener("click", () => {
@@ -23,7 +23,7 @@ const submitLocation = (function () {
       setInitTemps();
     }
   });
-})();
+};
 
 function celsiusButton() {
   const celsiusButton = document.getElementById("celsius-unit");

@@ -7,7 +7,7 @@ import {
 } from "./ui/eventHandlers";
 import { initLocalStorage } from "./utils/localStorage";
 import { highlightTempSelection } from "./ui/domManipulation";
-
+submitLocation();
 initLocalStorage();
 highlightTempSelection();
 celsiusButton();
