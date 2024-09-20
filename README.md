@@ -12,8 +12,6 @@
 ## About
 
 The project's goal is to call APIs and process their data to be usable in a web app.
-[lightmode.webm](https://github.com/user-attachments/assets/a0c619d1-904f-4ec8-ae45-4e0fced30f87)
-[darkmode.webm](https://github.com/user-attachments/assets/ca972cc2-ba01-45aa-bfdd-f772e95e547c)
 
 ## Features
 
