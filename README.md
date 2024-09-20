@@ -13,6 +13,11 @@
 
 The project's goal is to call APIs and process their data to be usable in a web app.
 
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/d5e294cd-943b-4928-ada6-ef241c4f61bb" width="45%" />
+  <img src="https://github.com/user-attachments/assets/ee0862fb-d1a0-40ed-8790-ac1a81e46e20" width="45%" /> 
+</p>
+
 ## Features
 
 - Toggle displaying the data in Fahrenheit or Celsius.
