@@ -55,7 +55,7 @@ function displayHourlyForecast(data) {
 
     const node = document.createElement("div");
     node.classList =
-      "hour-node column is-one-fifth is-flex is-flex-direction-column is-align-items-center"; // column classes
+      "hour-node column is-one-quarter is-flex is-flex-direction-column is-align-items-center"; // column classes
     const temp = document.createElement("div");
     temp.classList = "temp mb-4";
     const time = document.createElement("div");
